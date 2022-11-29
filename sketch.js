@@ -1,14 +1,31 @@
 const SKETCH_DEFAULT_GRID_ROWS = 16;
 const SKETCH_DEFAULT_GRID_COLUMNS = 16;
 
+class MouseState {
+  #pressed;
+  constructor(pressed) {
+    this.#pressed = pressed;
+  }
+
+  isPressed() {
+    return this.#pressed;
+  }
+
+  toggleState() {
+    this.#pressed = !this.#pressed;
+  }
+}
+
 class Sketch {
   #rootContainer;
   #sketch;
   #grid;
 
   #mousePressed = 0;
+  #mosueState;
 
   constructor(root) {
+    this.#mosueState = new MouseState(false);
     this.#rootContainer = root;
     this.#createLayout();
   }
@@ -22,13 +39,9 @@ class Sketch {
     grid.classList.add('sketch__grid', 'grid');
     sketch.append(grid);
 
-    grid.addEventListener('mouseup', () => {
-      this.#mousePressed = 0;
-    });
-
-    grid.addEventListener('mousedown', () => {
-      this.#mousePressed = 1;
-    })
+    const mouseTogglingCallback = this.#mosueState.toggleState.bind(this.#mosueState)
+    grid.addEventListener('mouseup', mouseTogglingCallback);
+    grid.addEventListener('mousedown', mouseTogglingCallback);
   }
 
   #cellClickHandler(cell) {
@@ -45,10 +58,8 @@ class Sketch {
     const createCell = () => {
       const cell = document.createElement('div');
       cell.classList.add('grid__cell');
-      const callback = createCellCallback(cell);
 
-      cell.addEventListener('mouseover', callback);
-      cell.addEventListener('mouseup', callback);
+      const callback = createCellCallback(cell);
       cell.addEventListener('mousedown', callback);
       cell.addEventListener('mousemove', callback);
 
