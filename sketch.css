@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+
+  padding: 0;
+  margin: 0;
+
+  border: 1px solid black;
+  user-select: none;
+}
+
+.grid__cell {
+  height: 50px;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.grid__cell_colored {
+  background-color: black;;
+}
