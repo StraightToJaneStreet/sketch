@@ -1,0 +1,31 @@
+{
+  "name": "sketch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sketch.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StraightToJaneStreet/sketch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StraightToJaneStreet/sketch/issues"
+  },
+  "homepage": "https://github.com/StraightToJaneStreet/sketch#readme",
+  "devDependencies": {
+    "@rollup/plugin-html": "^1.0.1",
+    "@rollup/plugin-typescript": "^10.0.1",
+    "rollup": "^3.5.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "rollup-plugin-serve": "^2.0.2",
+    "tslib": "^2.4.1"
+  }
+}
